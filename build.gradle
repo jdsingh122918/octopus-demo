@@ -19,7 +19,11 @@ dependencies {
     compileOnly("org.projectlombok:lombok")
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
-
+    implementation("io.micronaut.data:micronaut-data-hibernate-reactive")
+    implementation("io.vertx:vertx-pg-client")
+    implementation("org.postgresql:postgresql")
+    implementation("io.micronaut.flyway:micronaut-flyway")
+    implementation("io.micronaut.reactor:micronaut-reactor:")
 }
 
 
