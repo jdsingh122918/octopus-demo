@@ -23,7 +23,8 @@ dependencies {
     implementation("io.vertx:vertx-pg-client")
     implementation("org.postgresql:postgresql")
     implementation("io.micronaut.flyway:micronaut-flyway")
-    implementation("io.micronaut.reactor:micronaut-reactor:")
+    implementation("io.micronaut.reactor:micronaut-reactor")
+    implementation("com.ongres.scram:client:2.1")
 }
 
 

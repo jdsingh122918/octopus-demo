@@ -19,21 +19,21 @@ public class UserController {
 
     @Get("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    Publisher<User> show(@PathVariable(name = "id") Long id) {
+    Publisher<AppUser> show(@PathVariable(name = "id") Long id) {
         return userRepository.findById(id);
     }
 
     @Post
     @Status(HttpStatus.CREATED)
-    Publisher<HttpResponse<User>> save(@Valid @Body UserSaveCommand command) {
-        val savedEntity = User.builder()
+    Publisher<HttpResponse<AppUser>> save(@Valid @Body UserSaveCommand command) {
+        val savedEntity = AppUser.builder()
                 .lastName(command.getLastName())
                 .address(command.getAddress())
                 .firstName(command.getFirstName())
                 .build();
         return userRepository.save(savedEntity)
-                .map(user -> HttpResponse
-                        .<User>noContent()
-                        .headers(header -> header.location(URI.create("/users/" + user.getId()))));
+                .map(appUser -> HttpResponse
+                        .<AppUser>noContent()
+                        .headers(header -> header.location(URI.create("/users/" + appUser.getId()))));
     }
 }

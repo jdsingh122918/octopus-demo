@@ -7,16 +7,17 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "user")
+@Table(name = "appuser")
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class AppUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "appuser_id_seq", sequenceName = "appuser_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "appuser_id_seq")
     private Long id;
 
     @NotBlank
@@ -24,9 +25,10 @@ public class User {
     private String lastName;
 
     @Nullable
-    @Column
+    @Column(name = "firstname")
     private String firstName;
 
-    @OneToOne(mappedBy = "address")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 }
